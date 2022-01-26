@@ -16,7 +16,9 @@ static int Fibonacci(int c)
     }
     if (c == 1 || c == 2)
     {
-        Console.WriteLine(1);
+        Console.Write(0 + " " + 1);
+        if (c==2)
+            Console.Write(" " + 1);
         return 1;
     }
 
