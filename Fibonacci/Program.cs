@@ -6,7 +6,21 @@ while (!int.TryParse(Console.ReadLine(), out a))
     continue;
 }
 
-Fibonacci(a, OutputType.Console); 
+Console.WriteLine("Выберите вид вывода результатов:\n\t1: Консоль\n\t2: Файл");
+switch (Console.ReadKey(true).KeyChar)
+{
+    case '1':
+        Fibonacci(a, OutputType.Console);
+        break;
+    case '2':
+        {
+            Fibonacci(a, OutputType.File);
+            Console.WriteLine("Последовательность Фибоначчи сохранена в файл {0}\\fibo.txt", Environment.CurrentDirectory);
+            break;
+        }
+}
+
+ 
 
 
 static int Fibonacci(int endNumber, OutputType type)
@@ -14,9 +28,13 @@ static int Fibonacci(int endNumber, OutputType type)
     int current = 0;
     int prev1 = 0;
     int prev2 = 1;
+    using var writer = type == OutputType.File ? new StreamWriter("fibo.txt") : null;
     while (current <= endNumber)
     {
-        Console.WriteLine(current);
+        if (writer == null)
+            Console.WriteLine(current);
+        else
+            writer.Write(current + " ");
         current = prev1 + prev2;
         prev1 = prev2;
         prev2 = current;
