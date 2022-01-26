@@ -20,14 +20,16 @@ static int Fibonacci(int c)
         return 1;
     }
 
-    int sum = 0;
-    int prev = 1;
+    Console.Write(0 + " ");
+    int sum = 1;
+    int prev = 0;
     int next = 1;
 
     while (c > sum)
     {
-        sum = prev + next;
         Console.Write(sum + " ");
+        sum = prev + next;
+        
         prev = next;
         next = sum;
     }
