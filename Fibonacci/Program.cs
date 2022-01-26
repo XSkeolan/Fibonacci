@@ -5,36 +5,27 @@ while (!int.TryParse(Console.ReadLine(), out a))
     Console.WriteLine("Невозможно пропарсить число или оно слишком большое\nВведите другое число");
     continue;
 }
-Fibonacci(a); 
+
+Fibonacci(a, OutputType.Console); 
 
 
-static int Fibonacci(int c)
+static int Fibonacci(int endNumber, OutputType type)
 {
-    if (c == 0)
+    int current = 0;
+    int prev1 = 0;
+    int prev2 = 1;
+    while (current <= endNumber)
     {
-        Console.WriteLine(0);
-        return 0;
+        Console.WriteLine(current);
+        current = prev1 + prev2;
+        prev1 = prev2;
+        prev2 = current;
     }
-    if (c == 1 || c == 2)
-    {
-        Console.Write(0 + " " + 1);
-        if (c==2)
-            Console.Write(" " + 1);
-        return 1;
-    }
+    return current;
+}
 
-    Console.Write(0 + " ");
-    int sum = 1;
-    int prev = 0;
-    int next = 1;
-
-    while (c > sum)
-    {
-        Console.Write(sum + " ");
-        sum = prev + next;
-        
-        prev = next;
-        next = sum;
-    }
-    return sum;
+public enum OutputType
+{
+    Console,
+    File
 }
