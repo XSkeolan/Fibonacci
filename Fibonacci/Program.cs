@@ -2,6 +2,7 @@
 int a;
 while (!int.TryParse(Console.ReadLine(), out a))
 {
+    Console.WriteLine("Невозможно пропарсить число или оно слишком большое\nВведите другое число");
     continue;
 }
 Fibonacci(a); 
